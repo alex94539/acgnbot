@@ -38,7 +38,7 @@ const transporter = mail.createTransport({
   service: 'gmail',
   auth: {
     user: 'h.k.h94539@gmail.com',
-    pass: 'k486z97msd'
+    pass: ''
   }
 });
 
