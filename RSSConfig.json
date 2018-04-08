@@ -11,17 +11,5 @@
 				"type": "title"
 			}
 		]
-	},
-	{
-		"channelId": "432434726129631232",
-		"urlLists": [
-			"https://www.ptt.cc/atom/allpost.xml"
-		],
-		"filters": [
-			{
-				"regex": "閒聊",
-				"type": "title"
-			}
-		]
 	}
 ]
