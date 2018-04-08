@@ -19,7 +19,7 @@
 		],
 		"filters": [
 			{
-				"regex": "[a-zA-Z0-9]",
+				"regex": "閒聊",
 				"type": "title"
 			}
 		]
