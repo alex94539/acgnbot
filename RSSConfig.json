@@ -1,0 +1,15 @@
+[
+	{
+		"channelId": "354972145798873114",
+		"urlLists": [
+			"https://www.ptt.cc/atom/c_chat.xml",
+			"https://www.ptt.cc/atom/acgn_stock.xml"
+		],
+		"filters": [
+			{
+				"regex": "股票",
+				"type": "title"
+			}
+		]
+	}
+]
