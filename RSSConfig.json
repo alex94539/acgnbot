@@ -1,9 +1,27 @@
-[{
+[
+	{
 		"channelId": "354972145798873114",
-		"urlLists": ["https://www.ptt.cc/atom/c_chat.xml", "https://www.ptt.cc/atom/acgn_stock.xml"],
-		"filters": [{
-			"regex": "股票",
-			"type": "title"
-		}]
+		"urlLists": [
+			"https://www.ptt.cc/atom/c_chat.xml",
+			"https://www.ptt.cc/atom/acgn_stock.xml"
+		],
+		"filters": [
+			{
+				"regex": "股票",
+				"type": "title"
+			}
+		]
+	},
+	{
+		"channelId": "432434726129631232",
+		"urlLists": [
+			"https://www.ptt.cc/atom/allpost.xml"
+		],
+		"filters": [
+			{
+				"regex": "[a-zA-Z0-9]",
+				"type": "title"
+			}
+		]
 	}
 ]

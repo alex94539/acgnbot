@@ -303,6 +303,15 @@ function initRSSSenders() {
         rssSenders.push(rssSender);
     });
 }
+
+function writeNewConfigThenResetRSSSenders() {
+    fs.writeFile('RSSConfig.json', JSON.stringify(RSSConfig,null,'\t'), 'utf-8', function (err) {
+		if(err) throw err;
+		console.log('Saved!');
+    });
+    initRSSSenders();
+}
+
 client.on('message', message =>
 {
     if (message.content.substring(0, 2) == '%%')
@@ -485,6 +494,20 @@ client.on('message', message =>
 
                 break;
 
+            case 'newrss':
+                RSSConfig.push(JSON.parse(lit));
+                writeNewConfigThenResetRSSSenders();
+                /*
+%%newRSS {
+    "channelId": "432434726129631232",
+    "urlLists": ["https://www.ptt.cc/atom/allpost.xml"],
+    "filters": [{
+        "regex": "[a-zA-Z0-9]",
+        "type": "title"
+    }]
+}
+                */
+                break;
             case mail:
 
 
