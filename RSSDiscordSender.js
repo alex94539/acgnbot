@@ -18,7 +18,6 @@ class RSSDiscordSender extends RSSFeedFilter {
       this.feederList.on('new-item', function(item) {
         if (this.checkItem(item)) {
           const message = `${item.title}
-${item.description}
 ${item.link}`;
 
           const embed = new Discord.RichEmbed()
