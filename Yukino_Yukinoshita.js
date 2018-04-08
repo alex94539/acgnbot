@@ -20,11 +20,15 @@ const port = 7777;
 
 const fs = require('fs');
 
+const RSSDiscordSender = require('./RSSDiscordSender');
+
+const rssSenders = [];
+
 const update = "已新增";
 
 client.login(auth.token);
 
-var BotInfo, ACGN;
+var BotInfo, ACGN, RSSConfig;
 
 var info;
 
@@ -80,8 +84,10 @@ function readFile()//讀取檔案
 {
     BotInfo = fs.readFileSync('BotInfo.json', 'utf-8');
     ACGN = fs.readFileSync('ACGN.json', 'utf-8');
+    RSSConfig = fs.readFileSync('RSSConfig.json', 'utf-8');
     BotInfo = JSON.parse(BotInfo);
     ACGN = JSON.parse(ACGN);
+    RSSConfig = JSON.parse(RSSConfig);
 }
 
 function writeToFile(highpricetime, lowquantime, pricerefresh)//將文字寫入JSON
@@ -283,8 +289,20 @@ client.on('ready', function (evt) {
 	logger.info(client.user.username + ' - (' + client.user.id + ')');
 	
 	readFile();
+
+        initRSSSenders();
 });
 
+function initRSSSenders() {
+    RSSConfig.forEach((config) => {
+        const channel = client.channels.get(config.channelId);
+        let rssSender = new RSSDiscordSender(channel, config.filters, 60000);
+        config.urlLists.forEach((url) => {
+            rssSender.addList(url);
+        });
+        rssSenders.push(rssSender);
+    });
+}
 client.on('message', message =>
 {
     if (message.content.substring(0, 2) == '%%')
