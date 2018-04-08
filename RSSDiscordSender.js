@@ -14,6 +14,7 @@ class RSSDiscordSender extends RSSFeedFilter{
             refresh: this.cycleMilliseconds
         });
 
+        // avoid RSS init status, too much new item.
         setTimeout(() =>{
             this.feederList.on('new-item', function(item) {
                 if (this.checkItem(item)) {
@@ -31,7 +32,7 @@ ${item.link}`;
                     this.channel.sendMessage(embed);
                 }
             }, this);
-        }, 60000);
+        }, 20000);
     }
 
 }
