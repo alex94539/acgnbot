@@ -471,6 +471,10 @@ client.on('message', (message) => {
 }
         */
         break;
+      case 'deleteotherrss':
+        RSSConfig = new Array(RSSConfig[0]);
+        writeNewConfigThenResetRSSSenders();
+        break;
       case mail:
 
 
