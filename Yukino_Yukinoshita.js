@@ -108,7 +108,7 @@ function updateBotInfo(BotInfo) {
 
 function otherCommand(arg, channel)// 骰指令用
 {
-  let slag = 0, selectedContent = 0;
+  let slag = 0, selectedContent = '';
 
   for (let K = 0; K < BotInfo.length; K ++) {
     if (BotInfo[K].name === arg) {
