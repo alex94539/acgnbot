@@ -26,6 +26,8 @@ const rssSenders = [];
 
 const update = '已新增';
 
+const imageRegex = /http[s]?:\/\/.+\.((jpeg)|(jpg)|(png)|(gif)|(bmp))/;
+
 client.login(auth.token);
 
 let BotInfo, ACGN, RSSConfig;
@@ -104,14 +106,15 @@ function updateBotInfo(BotInfo) {
   });
 }
 
-function pic(arg, channel)// 骰圖片用
+function otherCommand(arg, channel)// 骰指令用
 {
-  let slag = 0;
+  let slag = 0, selectedContent = '';
 
   for (let K = 0; K < BotInfo.length; K ++) {
     if (BotInfo[K].name === arg) {
       slag = 1;
-      reply(3, BotInfo[K].content[random(BotInfo[K].content.length)], channel);
+      selectedContent = BotInfo[K].content[random(BotInfo[K].content.length)];
+      replyCommand(selectedContent, channel);
       break;
     }
   }
@@ -119,6 +122,20 @@ function pic(arg, channel)// 骰圖片用
   if (slag === 0) {
     reply(4, BotInfo[1].content, channel);
   }
+}
+
+function replyCommand(content, channel) {
+  if(contentIsImg(content)) {
+    reply(3, content, channel);
+  }
+  else {
+    reply(4, content, channel);
+  }
+}
+
+function contentIsImg(content) {
+
+  return content.match(imageRegex) !== null;
 }
 
 function save(type, context, user, channel)// 寫入資訊的前置作業
@@ -326,7 +343,7 @@ client.on('message', (message) => {
         }
 
         for (R = 0; R < Number(context); R ++) {
-          pic(type, message.channel);
+          otherCommand(type, message.channel);
         }
 
         break;
@@ -382,12 +399,6 @@ client.on('message', (message) => {
       case 'say':
 
         reply(6, type, message.channel);
-
-        break;
-
-      case 'eupho':
-
-      case 'go':
 
         break;
 
@@ -484,7 +495,7 @@ client.on('message', (message) => {
           break;
         }
 
-        pic(command, message.channel);
+        otherCommand(command, message.channel);
 
         break;
     }
