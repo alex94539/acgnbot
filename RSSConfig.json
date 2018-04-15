@@ -1,8 +1,14 @@
-[{
-	"channelId": "354972145798873114",
-	"urlLists": ["https://www.ptt.cc/atom/acgn_stock.xml"],
-	"filters": [{
-		"regex": "\\[提案\\]",
-		"type": "title"
-	}]
-}]
+[
+	{
+		"channelId": "354972145798873114",
+		"urlLists": [
+			"https://www.ptt.cc/atom/acgn_stock.xml"
+		],
+		"filters": [
+			{
+				"regex": "\\[提案\\]",
+				"type": "title"
+			}
+		]
+	}
+]
