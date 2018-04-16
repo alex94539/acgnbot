@@ -291,6 +291,10 @@ client.on('ready', function(evt) {
 });
 
 function initRSSSenders() {
+  rssSenders.forEach((rssSender) => {
+    rssSender.destroy();
+  });
+  rssSenders.length = 0;
   RSSConfig.forEach((config) => {
     const channel = client.channels.get(config.channelId);
     const rssSender = new RSSDiscordSender(channel, config.filters, 60000);
