@@ -242,6 +242,11 @@
 			"https://i.imgur.com/htJDHNO.jpg",
 			"https://i.imgur.com/rD7OfAg.jpg"
     ]
+=======
+			"https://i.imgur.com/rD7OfAg.jpg",
+			"https://i.imgur.com/gPXst9v.jpg"
+		]
+>>>>>>> 0d5f1aa6a5bfaae42bda05d894c41d49f144dc42
 	},
 	{
 		"name": "rocket",
@@ -348,9 +353,16 @@
 	},
 	{
 		"name": "kancolle",
+<<<<<<< HEAD
     	"content": [
       		"https://i.imgur.com/cZACtTb.jpg",
       		"https://i.imgur.com/VIbRmb9.jpg"
     	]
+=======
+		"content": [
+			"https://i.imgur.com/cZACtTb.jpg",
+			"https://i.imgur.com/VIbRmb9.jpg"
+		]
+>>>>>>> 0d5f1aa6a5bfaae42bda05d894c41d49f144dc42
 	}
 ]
