@@ -12,15 +12,6 @@ class RSSFeedFilter {
       url: url,
       refresh: this.cycleMilliseconds
     });
-
-    this.feederList.on('new-item', function(item) {
-      if (this.checkItem(item)) {
-        const message = `${item.title}
-${item.description}
-${item.link}`;
-        console.log(message);
-      }
-    }, this);
   }
 
   checkItem(item) {
@@ -29,6 +20,10 @@ ${item.link}`;
 
       return regex.test(item[filterItem.type]);
     });
+  }
+
+  setNewItemHandler(callback) {
+    this.feederList.on('new-item', callback, this);
   }
 
   list() {
