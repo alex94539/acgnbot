@@ -301,9 +301,29 @@ function initRSSSenders() {
     config.urlLists.forEach((url) => {
       rssSender.addList(url);
     });
+    setTimeout(() => { rssSender.setNewItemHandler(newItemHandler); }, 20000);
+
     rssSenders.push(rssSender);
   });
 }
+
+// this: object from emiter's caller --> RSSFeedFilter
+function newItemHandler(item) {
+  if (this.checkItem(item)) {
+    const message = `${item.title}
+${item.link}`;
+
+    const embed = new Discord.RichEmbed()
+      .setTitle('news')
+      .setThumbnail('http://i.imgur.com/T4y0egb.jpg')
+      .setColor(3447003)
+      .addField('雪乃からの伝言', message)
+      .setFooter('比企谷雪乃')
+      .setTimestamp();
+    this.channel.send(embed);
+  }
+}
+
 
 function writeNewConfigThenResetRSSSenders() {
   fs.writeFile('RSSConfig.json', JSON.stringify(RSSConfig, null, '\t'), 'utf-8', function(err) {
